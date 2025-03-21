@@ -22,8 +22,8 @@ Este é um boilerplate para projetos utilizando o framework [NestJS](https://nes
 1. Clone o repositório:
 
     ```bash
-    git clone https://github.com/seu-usuario/nest-boilerplate-2025.git
-    cd nest-boilerplate-2025
+    git clone https://github.com/seu-usuario/nest-ddd-boilerplate-2025.git
+    cd nest-ddd-boilerplate-2025
     ```
 
 2. Instale as dependências:
