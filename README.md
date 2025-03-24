@@ -8,6 +8,7 @@ Este é um boilerplate para projetos utilizando o framework [NestJS](https://nes
 - **PostgreSQL**: Banco de dados relacional utilizado para armazenamento de dados.
 - **Prisma**: ORM Node.js e TypeScript.
 - **Docker**: Plataforma para desenvolvimento, envio e execução de aplicações em containers.
+- **JWT (RS256)**: Estratégia de autenticação baseada em tokens com assinatura assimétrica.
 
 ## Scripts de Instalação
 
@@ -16,6 +17,7 @@ Este é um boilerplate para projetos utilizando o framework [NestJS](https://nes
 - [Node.js](https://nodejs.org/) (versão 18 ou superior)
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
+- [OpenSSL](https://www.openssl.org/) (para geração das chaves)
 
 ### Passos para Instalação
 
@@ -50,7 +52,35 @@ Este é um boilerplate para projetos utilizando o framework [NestJS](https://nes
     npx prisma migrate dev
     ```
 
-6. Inicie a aplicação:
+6. Gere as chaves para o JWT (RS256):
+
+    - **Gere a chave privada**:
+      ```bash
+      openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048
+      ```
+
+    - **Gere a chave pública**:
+      ```bash
+      openssl rsa -pubout -in private.pem -out public.pem
+      ```
+
+    - **Converta as chaves para Base64**:
+      ```bash
+      # Converta a chave privada para Base64
+      cat private.pem | base64 -w 0 > private-base64.txt
+
+      # Converta a chave pública para Base64
+      cat public.pem | base64 -w 0 > public-base64.txt
+      ```
+
+    - Copie o conteúdo dos arquivos `private-base64.txt` e `public-base64.txt` para o arquivo `.env`:
+
+      ```env
+      JWT_PRIVATE_KEY="(conteúdo do arquivo private-base64.txt)"
+      JWT_PUBLIC_KEY="(conteúdo do arquivo public-base64.txt)"
+      ```
+
+7. Inicie a aplicação:
 
     ```bash
     npm run start:dev
@@ -71,6 +101,10 @@ Este é um boilerplate para projetos utilizando o framework [NestJS](https://nes
 - **prisma/**: Contém o esquema do Prisma e as migrações do banco de dados.
 - **docker-compose.yml**: Configuração do Docker Compose para o PostgreSQL.
 - **.env**: Arquivo de variáveis de ambiente.
+
+## Estratégia de Autenticação com JWT (RS256)
+
+Este projeto utiliza a estratégia de autenticação JWT com o algoritmo **RS256**. Para configurar o JWT, é necessário gerar uma chave privada e uma chave pública. Ambas as chaves devem ser convertidas para Base64 e configuradas no arquivo `.env` como `JWT_PRIVATE_KEY` e `JWT_PUBLIC_KEY`.
 
 ## Melhorias Futuras
 
