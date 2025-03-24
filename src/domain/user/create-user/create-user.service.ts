@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { hash } from 'bcryptjs';
 import { IService } from 'src/common/interfaces/IService';
 import { PrismaService } from 'src/shared/prisma/prisma.service';
 
 interface Input {
   name: string;
   email: string;
+  password: string;
 }
 
 interface Output {
@@ -21,7 +23,7 @@ export class CreateUserService implements IService<Input, Output> {
     private readonly prisma: PrismaService,
   ) {}
 
-  async execute({ name, email }: Input) {
+  async execute({ name, email, password }: Input) {
     try {
       const userWithSameEmail = await this.prisma.user.findFirst({
         where: {
@@ -38,10 +40,13 @@ export class CreateUserService implements IService<Input, Output> {
         };
       }
 
+      const hashedPassword = await hash(password, 10);
+
       await this.prisma.user.create({
         data: {
           name,
           email,
+          password: hashedPassword,
         },
       });
 
