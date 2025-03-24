@@ -5,13 +5,15 @@ import { AppService } from './app.service';
 import { UserModule } from './domain/user/user.module';
 import { envSchema } from './shared/env/env';
 import { AuthModule } from './domain/user/auth/auth.module';
+import { PrismaService } from './shared/prisma/prisma.service';
+import { AuthenticateModule } from './domain/user/authenticate/authenticate.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
     validate: (env) => envSchema.parse(env),
     isGlobal: true,
-  }), UserModule, AuthModule],
+  }), UserModule, AuthModule, AuthenticateModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, PrismaService],
 })
 export class AppModule {}
