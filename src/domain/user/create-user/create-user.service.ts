@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { hash } from 'bcryptjs';
-import { IService } from 'src/common/interfaces/IService';
-import { PrismaService } from 'src/shared/prisma/prisma.service';
+import { IService } from '@/common/interfaces/IService';
+import { PrismaService } from '@/shared/prisma/prisma.service';
 
 interface Input {
   name: string;

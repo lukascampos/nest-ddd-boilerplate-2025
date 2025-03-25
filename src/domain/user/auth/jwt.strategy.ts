@@ -2,9 +2,9 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { Env } from 'src/shared/env/env';
-import { PrismaService } from 'src/shared/prisma/prisma.service';
 import { z } from 'zod';
+import { Env } from '@/shared/env/env';
+import { PrismaService } from '@/shared/prisma/prisma.service';
 
 const tokenPayloadSchema = z.object({
   sub: z.string().uuid(),

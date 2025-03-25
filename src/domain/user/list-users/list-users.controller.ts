@@ -4,10 +4,10 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { IController } from 'src/common/interfaces/IController';
-import { PrismaService } from 'src/shared/prisma/prisma.service';
 import { z } from 'zod';
-import { ZodValidationPipe } from 'src/shared/pipes/zod-validation.pipe';
+import { IController } from '@/common/interfaces/IController';
+import { PrismaService } from '@/shared/prisma/prisma.service';
+import { ZodValidationPipe } from '@/shared/pipes/zod-validation.pipe';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ListUsersService } from './list-users.service';
 

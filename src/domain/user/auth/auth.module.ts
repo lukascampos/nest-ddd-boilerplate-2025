@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { Env } from 'src/shared/env/env';
-import { PrismaService } from 'src/shared/prisma/prisma.service';
+import { Env } from '@/shared/env/env';
+import { PrismaService } from '@/shared/prisma/prisma.service';
 import { JwtStrategy } from './jwt.strategy';
 
 @Module({

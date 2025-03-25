@@ -1,9 +1,9 @@
 import {
   Body, Controller, InternalServerErrorException, Post, UnauthorizedException, UsePipes,
 } from '@nestjs/common';
-import { IController } from 'src/common/interfaces/IController';
-import { ZodValidationPipe } from 'src/shared/pipes/zod-validation.pipe';
 import { z } from 'zod';
+import { IController } from '@/common/interfaces/IController';
+import { ZodValidationPipe } from '@/shared/pipes/zod-validation.pipe';
 import { AuthenticateService } from './authenticate.service';
 
 const authenticateBodySchema = z.object({

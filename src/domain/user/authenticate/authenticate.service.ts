@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcryptjs';
-import { IService } from 'src/common/interfaces/IService';
-import { PrismaService } from 'src/shared/prisma/prisma.service';
+import { IService } from '@/common/interfaces/IService';
+import { PrismaService } from '@/shared/prisma/prisma.service';
 
 interface Input {
   email: string;
