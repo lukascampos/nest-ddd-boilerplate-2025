@@ -7,12 +7,13 @@ import { envSchema } from './shared/env/env';
 import { AuthModule } from './domain/user/auth/auth.module';
 import { PrismaService } from './shared/prisma/prisma.service';
 import { AuthenticateModule } from './domain/user/authenticate/authenticate.module';
+import { ListUsersModule } from './domain/user/list-users/list-users.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
     validate: (env) => envSchema.parse(env),
     isGlobal: true,
-  }), UserModule, AuthModule, AuthenticateModule],
+  }), UserModule, AuthModule, AuthenticateModule, ListUsersModule],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
