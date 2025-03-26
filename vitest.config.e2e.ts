@@ -1,4 +1,5 @@
 import swc from 'unplugin-swc';
+import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
@@ -8,5 +9,7 @@ export default defineConfig({
     root: './',
     setupFiles: ['./test/setup-e2e.ts'],
   },
-  plugins: [swc.vite()],
+  plugins: [
+    tsconfigPaths(),
+    swc.vite()],
 });
