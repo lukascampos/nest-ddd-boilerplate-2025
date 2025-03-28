@@ -3,7 +3,7 @@ import {
 } from '@nestjs/common';
 import { z } from 'zod';
 import { IController } from '@/common/interfaces/IController';
-import { ZodValidationPipe } from '@/shared/pipes/zod-validation.pipe';
+import { ZodValidationPipe } from '@/shared/http/pipes/zod-validation.pipe';
 import { AuthenticateService } from './authenticate.service';
 
 const authenticateBodySchema = z.object({

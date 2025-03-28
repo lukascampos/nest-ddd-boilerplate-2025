@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { z } from 'zod';
 import { IController } from '@/common/interfaces/IController';
-import { ZodValidationPipe } from '@/shared/pipes/zod-validation.pipe';
+import { ZodValidationPipe } from '@/shared/http/pipes/zod-validation.pipe';
 import { CreateUserService } from './create-user.service';
 
 const createAccountBodySchema = z.object({

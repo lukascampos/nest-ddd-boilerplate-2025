@@ -7,7 +7,7 @@ import {
 import { z } from 'zod';
 import { IController } from '@/common/interfaces/IController';
 import { PrismaService } from '@/shared/prisma/prisma.service';
-import { ZodValidationPipe } from '@/shared/pipes/zod-validation.pipe';
+import { ZodValidationPipe } from '@/shared/http/pipes/zod-validation.pipe';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ListUsersService } from './list-users.service';
 
