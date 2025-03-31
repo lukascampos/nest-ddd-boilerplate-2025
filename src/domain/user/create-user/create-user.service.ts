@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { hash } from 'bcryptjs';
+import { randomUUID } from 'crypto';
 import { IService } from '@/common/interfaces/IService';
 import { PrismaService } from '@/shared/prisma/prisma.service';
 
@@ -44,6 +45,7 @@ export class CreateUserService implements IService<Input, Output> {
 
       await this.prisma.user.create({
         data: {
+          id: randomUUID(),
           name,
           email,
           password: hashedPassword,

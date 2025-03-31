@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Either, left, right } from '@/shared/utils/either';
 import { UsersRepository } from '../repositories/users.repository';
 import { User } from '../entities/user';
-import { UserAlredyExistsError } from '../errors/user-alredy-exists.error';
+import { UserAlreadyExistsError } from '../errors/user-already-exists.error';
 import { HashGenerator } from '../utils/cryptography/hash-generator';
 
 type Input = {
@@ -11,7 +11,7 @@ type Input = {
   password: string;
 }
 
-type Output = Either<UserAlredyExistsError, { user: User }>
+type Output = Either<UserAlreadyExistsError, { user: User }>
 
 @Injectable()
 export class CreateUserUseCase {
@@ -24,7 +24,7 @@ export class CreateUserUseCase {
     const userAlredyExists = await this.usersRepository.findByEmail(email);
 
     if (userAlredyExists) {
-      return left(new UserAlredyExistsError(email));
+      return left(new UserAlreadyExistsError(email));
     }
 
     const hashedPassword = await this.hashGenerator.hash(password);
